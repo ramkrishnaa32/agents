@@ -15,8 +15,8 @@ def main():
         logger.error("OPENAI_API_KEY is not set")
         raise ValueError("OPENAI_API_KEY is not set")
 
-    prompt = "Help me to pick a bussines that is worth exploring for an agentic AI opportunity"
-    content = "You are a helpful assistant, you are given a prompt and you need to help the user to pick a bussiness are that worth exploring for investing for an  agentic AI opportunity"
+    prompt = "Help me to pick a business that is worth exploring for an agentic AI opportunity"
+    content = "You are a helpful assistant, you are given a prompt and you need to help the user to pick a business are that worth exploring for investing for an  agentic AI opportunity"
     messages = [
         {
             "role": "system",
