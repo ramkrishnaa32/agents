@@ -1,35 +1,29 @@
-from helperFunctions import openaiHelper
-import os
-from dotenv import load_dotenv
-load_dotenv(override=True)
-
-
+from helperFunctions import OpenAIHelper
 from logging import getLogger
+
 logger = getLogger(__name__)
 
 
 def main():
-
-    openai_api_key = os.getenv("OPENAI_API_KEY")
-    if not openai_api_key:
-        logger.error("OPENAI_API_KEY is not set")
-        raise ValueError("OPENAI_API_KEY is not set")
+    """Main function to demonstrate OpenAI helper usage."""
+    # Initialize helper (automatically loads credentials from .env)
+    helper = OpenAIHelper()
 
     prompt = "Help me to pick a business that is worth exploring for an agentic AI opportunity"
-    content = "You are a helpful assistant, you are given a prompt and you need to help the user to pick a business are that worth exploring for investing for an  agentic AI opportunity"
+    system_content = (
+        "You are a helpful assistant. You are given a prompt and you need to help "
+        "the user to pick a business area that is worth exploring for investing in "
+        "an agentic AI opportunity."
+    )
+    
     messages = [
-        {
-            "role": "system",
-            "content": content
-        },
-        {
-            "role": "user",
-            "content": prompt
-        }
+        {"role": "system", "content": system_content},
+        {"role": "user", "content": prompt}
     ]
-    openai_helper = openaiHelper(openai_api_key)
-    response = openai_helper.get_response(messages=messages)
-    print(response.choices[0].message.content)
+    
+    # Get response text directly
+    response_text = helper.get_response_text(messages=messages)
+    print(response_text)
 
 if __name__ == "__main__":
     main()
